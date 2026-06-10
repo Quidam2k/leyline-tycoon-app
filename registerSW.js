@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/leyline-tycoon-app/sw.js', { scope: '/leyline-tycoon-app/' })})}

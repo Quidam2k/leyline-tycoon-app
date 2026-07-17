@@ -7,10 +7,39 @@
     <meta name="theme-color" content="#0a0a12" />
     <link rel="apple-touch-icon" href="/leyline-tycoon-app/apple-touch-icon.png" />
     <title>Leyline Tycoon</title>
-    <script type="module" crossorigin src="/leyline-tycoon-app/assets/index-BABrIE77.js"></script>
+    <style>
+      /* Boot veil (sight-and-veil cascade 2026-07-16, P1): the map must NEVER
+         flash a wrong location at boot — this opaque cover sits over everything
+         until main.ts anchors the camera (accepted GPS fix / Nexus fallback /
+         ~8 s timeout) and calls revealVeil(). Inline here, not in style.css:
+         the stylesheet arrives via the JS bundle, which is too late for a
+         zero-flash guarantee. Font stack is a serif fallback on purpose — the
+         self-hosted Cinzel/Spectral also ride the bundle. */
+      #boot-veil {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(ellipse at center, #141426 0%, #0a0a12 70%);
+        color: #c9b37e;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 17px;
+        letter-spacing: 0.14em;
+        opacity: 1;
+        transition: opacity 0.8s ease;
+      }
+      #boot-veil.boot-veil--hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+    <script type="module" crossorigin src="/leyline-tycoon-app/assets/index-BWHZzzXr.js"></script>
     <link rel="stylesheet" crossorigin href="/leyline-tycoon-app/assets/index-DvGh49k_.css">
   <link rel="manifest" href="/leyline-tycoon-app/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/leyline-tycoon-app/registerSW.js"></script></head>
   <body>
+    <div id="boot-veil">Finding you…</div>
     <div id="app"></div>
   </body>
 </html>

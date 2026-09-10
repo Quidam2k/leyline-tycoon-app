@@ -34,12 +34,22 @@
         opacity: 0;
         pointer-events: none;
       }
+      /* Build stamp on the veil itself (#4763): Todd's stuck screen was the
+         veil, before the map — so the "which build am I on?" answer has to be
+         legible right here. main.ts fills it from __BUILD_ID__ on module eval. */
+      #boot-veil-build {
+        display: block;
+        margin-top: 10px;
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        opacity: 0.5;
+      }
     </style>
-    <script type="module" crossorigin src="/leyline-tycoon-app/assets/index-D9oQor1Y.js"></script>
+    <script type="module" crossorigin src="/leyline-tycoon-app/assets/index-B91Gd4T6.js"></script>
     <link rel="stylesheet" crossorigin href="/leyline-tycoon-app/assets/index-C1SUMYzJ.css">
-  <link rel="manifest" href="/leyline-tycoon-app/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/leyline-tycoon-app/registerSW.js"></script></head>
+  <link rel="manifest" href="/leyline-tycoon-app/manifest.webmanifest"></head>
   <body>
-    <div id="boot-veil">Finding you…</div>
+    <div id="boot-veil">Finding you…<span id="boot-veil-build"></span></div>
     <div id="app"></div>
   </body>
 </html>

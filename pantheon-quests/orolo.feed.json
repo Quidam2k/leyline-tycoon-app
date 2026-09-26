@@ -1,0 +1,69 @@
+[
+  {
+    "id": "orolo-library-quiet",
+    "title": "The Quiet Noticing",
+    "flavor": "The library floor holds the footsteps of everyone who came looking for what was already there — you walked in and found it. What could be quieter?",
+    "tags": ["sanctuary", "knowledge", "quiet"],
+    "rarity": "common",
+    "predicate": "sv.place?.poiType === 'library' && sv.sun.altitudeDeg > 0",
+    "payload": {
+      "kind": "production",
+      "mana": "white",
+      "mult": 1.15
+    }
+  },
+  {
+    "id": "orolo-river-sight",
+    "title": "River-Sight",
+    "flavor": "The Willamette doesn't hurry. Neither should you. You stood where it flows, and for one moment, so did everything else.",
+    "tags": ["water", "nature", "flow"],
+    "rarity": "common",
+    "predicate": "sv.place != null && (sv.place.poiType === 'beach' || sv.place.poiType === 'water' || sv.place.poiType === 'bay') && (sv.sun.goldenHour === true || (sv.sun.altitudeDeg > 10 && sv.sun.altitudeDeg < 50))",
+    "payload": {
+      "kind": "production",
+      "mana": "blue",
+      "mult": 1.2
+    }
+  },
+  {
+    "id": "orolo-petrichor",
+    "title": "After the Rain",
+    "flavor": "The earth exhales after rain — old stones breathing, the last water pooling, the very ground remembering it is alive. You arrived at the exact moment it speaks.",
+    "tags": ["weather", "nature", "sensory"],
+    "rarity": "uncommon",
+    "predicate": "sv.weather?.petrichor === true && sv.weather?.precipMm < 0.1 && sv.sun?.altitudeDeg > -6 && sv.place != null",
+    "payload": {
+      "kind": "chance",
+      "event": "petrichor_awakening",
+      "ratePerHour": 0.6,
+      "mana": "green",
+      "boon": 14
+    }
+  },
+  {
+    "id": "orolo-golden-sanctuary",
+    "title": "The Light Turns Everything",
+    "flavor": "Golden hour asks a simple question: do your neighbors burn one another alive? No — they walk, they notice, they let the light remake them. You saw that, and the world shifted.",
+    "tags": ["light", "sanctuary", "community", "presence"],
+    "rarity": "uncommon",
+    "predicate": "(sv.place?.poiType === 'park' || sv.place?.poiType === 'nature_reserve' || sv.place?.poiType === 'forest' || sv.place?.poiType === 'library' || sv.place?.poiType === 'community_center') && sv.sun.goldenHour === true",
+    "payload": {
+      "kind": "production",
+      "mana": "all",
+      "mult": 1.12
+    }
+  },
+  {
+    "id": "orolo-summit-dawn",
+    "title": "The Summit Waits",
+    "flavor": "You climbed while the world slept. Now it wakes with you — and you see it first. That moment is not borrowed. You earned it.",
+    "tags": ["peak", "sunrise", "endurance", "achievement"],
+    "rarity": "rare",
+    "predicate": "sv.place?.poiType === 'peak' && sv.sun.altitudeDeg >= -6 && sv.sun.altitudeDeg <= 8 && sv.time.hour >= 5 && sv.time.hour <= 9",
+    "payload": {
+      "kind": "production",
+      "mana": "yellow",
+      "mult": 1.35
+    }
+  }
+]

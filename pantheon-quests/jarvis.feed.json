@@ -1,0 +1,199 @@
+[
+  {
+    "id": "riverside-courier",
+    "title": "Riverside Courier",
+    "flavor": "The Willamette at golden hour holds one perfect dispatch window: light slant and low off the water, mist threading the air. A route waits only for someone willing to walk it.",
+    "tags": ["light", "water", "walking", "nature", "golden-hour"],
+    "rarity": "common",
+    "predicate": "sv.sun?.goldenHour === true && sv.place != null && (sv.place.poiType === 'water' || sv.place.poiType === 'bay' || sv.place.manaColor === 'blue')",
+    "payload": {
+      "kind": "production",
+      "mana": "all",
+      "mult": 1.1
+    }
+  },
+  {
+    "id": "peak-survey",
+    "title": "Peak Survey",
+    "flavor": "Spencer Butte at midday: the Territory in full sun, mapped from above. A surveyor's task—clear sight lines, confirm the routes, read the land from the high ground.",
+    "tags": ["nature", "peak", "exploration", "walking", "daytime"],
+    "rarity": "uncommon",
+    "predicate": "sv.sun?.altitudeDeg > 35 && sv.place != null && sv.place.poiType === 'peak'",
+    "payload": {
+      "kind": "production",
+      "mana": "yellow",
+      "mult": 1.2
+    }
+  },
+  {
+    "id": "sanctuary-hold",
+    "title": "Sanctuary Hold",
+    "flavor": "A library in the afternoon light: the sanctuary opened, the routes to knowledge unfurled. You're three hours ahead of schedule if you work here—claim the hold.",
+    "tags": ["sanctuary", "learning", "light", "focus", "daytime"],
+    "rarity": "uncommon",
+    "predicate": "sv.sun?.altitudeDeg > 15 && sv.sun?.altitudeDeg <= 50 && sv.place?.poiType === 'library'",
+    "payload": {
+      "kind": "production",
+      "mana": "blue",
+      "mult": 1.15
+    }
+  },
+  {
+    "id": "the-long-walk",
+    "title": "The Long Walk",
+    "flavor": "Six kilometers behind you. The river path stretches ahead without apology. Your legs know the work; your measure knows the distance. The walk earns what the shortcut never will.",
+    "tags": ["nature", "folklore", "light", "educational"],
+    "rarity": "uncommon",
+    "predicate": "(sv) => sv.self?.distanceWalked >= 6000 && sv.weather?.windKph <= 25 && sv.weather?.precipMm < 1 && sv.weather?.tempC >= 8 && sv.weather?.tempC <= 28 && sv.sun?.altitudeDeg > 0 && sv.pos?.hasLiveGps === true",
+    "payload": {
+      "kind": "production",
+      "mana": "white",
+      "mult": 1.4
+    }
+  },
+  {
+    "id": "golden-conjunction",
+    "title": "The Golden Conjunction",
+    "flavor": "Two planets in parliament, the sun pooling gold at the rim, and you standing in a place built for quiet—this is the needle. This is what the walk earns.",
+    "tags": ["folklore", "calendar", "light", "education"],
+    "rarity": "rare",
+    "predicate": "(sv) => sv.sky?.conjunction != null && sv.sun?.goldenHour === true && sv.moon?.illumination >= 0.6 && sv.moon?.illumination <= 0.95 && sv.place?.sanctuary === true && sv.weather?.precipMm < 0.5",
+    "payload": {
+      "kind": "production",
+      "mana": "all",
+      "mult": 1.5
+    }
+  },
+  {
+    "id": "after-the-storm",
+    "title": "After the Storm",
+    "flavor": "The thunder cleared five minutes ago—the air still tastes like breaking. Step outside now: a rainbow is written across wet sky, and you are the only one small enough to walk beneath it.",
+    "tags": ["nature", "weather", "light", "education"],
+    "rarity": "rare",
+    "predicate": "(sv) => sv.weather?.stormWake === true && sv.weather?.rainbowWindow === true && (sv.place?.nearWater === true || sv.place?.poiType === 'park' || sv.place?.poiType === 'nature_reserve') && sv.sun?.altitudeDeg > 0 && sv.weather?.cloudCover <= 60",
+    "payload": {
+      "kind": "chance",
+      "event": "rainbow-mermaid",
+      "ratePerHour": 0.8,
+      "mana": "blue",
+      "boon": 14
+    }
+  },
+  {
+    "id": "dawn-vigil",
+    "title": "The Dawn Vigil",
+    "flavor": "You arrive at first light when the sky is still ash and the stars refuse to fade—a sanctuary door opens only once, only for you. The aurora trembles overhead. This is the covenant kept.",
+    "tags": ["folklore", "calendar", "light", "education"],
+    "rarity": "legendary",
+    "predicate": "(sv) => sv.time.hour >= 5 && sv.time.hour < 7 && sv.sun?.twilightPhase === 'astro' && sv.place?.sanctuary === true && sv.geo?.auroraOverhead === true && sv.weather?.cloudCover <= 30 && sv.weather?.precipMm < 0.1 && sv.weather?.snowing !== true",
+    "payload": {
+      "kind": "production",
+      "mana": "purple",
+      "mult": 1.6
+    }
+  },
+  {
+    "id": "libsanctuary-afternoon",
+    "title": "Sanctuary Rest",
+    "flavor": "The library doors are open in daylight hours, the light steady—there's a waypoint here that rewards the route through knowledge.",
+    "tags": ["educational", "sanctuary", "knowledge", "community"],
+    "rarity": "common",
+    "predicate": "(sv) => sv.place?.sanctuary === true && sv.sun?.twilightPhase !== 'night' && sv.time.hour >= 8 && sv.time.hour <= 18",
+    "payload": {
+      "kind": "production",
+      "mana": "white",
+      "mult": 1.15
+    }
+  },
+  {
+    "id": "river-golden-hour",
+    "title": "Path of Light",
+    "flavor": "The Willamette's catching the last gold before dusk—the water has work for you if you're there to meet it. Forty minutes, maybe less.",
+    "tags": ["water", "light", "exercise", "golden-hour", "riverside"],
+    "rarity": "uncommon",
+    "predicate": "(sv) => sv.place?.nearWater === true && sv.sun?.goldenHour === true && sv.weather?.cloudCover < 70 && sv.weather?.precipMm === 0",
+    "payload": {
+      "kind": "production",
+      "mana": "blue",
+      "mult": 1.3
+    }
+  },
+  {
+    "id": "solstice-summit-dawn",
+    "title": "Solar Apex",
+    "flavor": "At solstice dawn, if you reach the summit in the hour before sunrise and skies permit, you'll witness the solar alignment—it only happens twice a year.",
+    "tags": ["calendar", "solstice", "peak", "challenge", "astronomy", "hiking"],
+    "rarity": "rare",
+    "predicate": "(sv) => sv.cal?.solstice !== null && sv.sun?.altitudeDeg > -2 && sv.sun?.altitudeDeg < 6 && sv.place?.poiType === 'peak' && sv.weather?.cloudCover < 40",
+    "payload": {
+      "kind": "production",
+      "mana": "all",
+      "mult": 1.5
+    }
+  },
+  {
+    "id": "sanctuary-earned-rest",
+    "title": "Earned Shelter",
+    "flavor": "You've put in the steps—the sanctuary's doors are open in the blue hour, and there's recovery waiting inside. Call this a waypoint, not the destination.",
+    "tags": ["sanctuary", "rest", "walking", "meditation", "community", "wellness"],
+    "rarity": "uncommon",
+    "predicate": "(sv) => sv.self?.stepCount > 5000 && sv.sun?.blueHour === true && sv.place?.sanctuary === true",
+    "payload": {
+      "kind": "production",
+      "mana": "white",
+      "mult": 1.2
+    }
+  },
+  {
+    "id": "equinox-hinge",
+    "title": "The Year's Pivot",
+    "flavor": "Night and day hang in perfect balance — the hinge of the year turns under your feet, and for a moment everything weighs exactly the same.",
+    "tags": ["calendar", "balance", "folklore"],
+    "rarity": "uncommon",
+    "predicate": "sv.cal.equinox != null && sv.place?.sanctuary === true",
+    "payload": {
+      "kind": "production",
+      "mana": "all",
+      "mult": 1.25
+    }
+  },
+  {
+    "id": "aurora-earned",
+    "title": "The Sky Earned by Walking",
+    "flavor": "Your feet bought what your eyes now cash in — the sky dances overhead because you were patient enough to walk here and stand still.",
+    "tags": ["light", "weather", "folklore"],
+    "rarity": "rare",
+    "predicate": "sv.geo?.auroraOverhead === true && sv.weather?.cloudCover < 20 && sv.self?.stepCount > 5000 && sv.time.hour >= 21 && sv.time.hour < 24",
+    "payload": {
+      "kind": "production",
+      "mana": "white",
+      "mult": 1.4
+    }
+  },
+  {
+    "id": "galactic-wheel-turning",
+    "title": "The Wheel at the Center",
+    "flavor": "The galaxy's heart rises on the turning year — and you have walked far enough that you recognize what you're looking at, and you are changed by it.",
+    "tags": ["calendar", "folklore", "balance"],
+    "rarity": "legendary",
+    "predicate": "sv.cal.sabbat != null && sv.stars?.galacticCenter === true && sv.self?.distanceWalked > 16090",
+    "payload": {
+      "kind": "production",
+      "mana": "all",
+      "mult": 1.5
+    }
+  },
+  {
+    "id": "the-flowing",
+    "title": "The Flowing",
+    "flavor": "The creek runs fat and alive after the rain. Follow it downstream—where does it go? It all flows back, eventually. Everything does.",
+    "tags": ["water", "weather", "nature", "discovery"],
+    "rarity": "uncommon",
+    "predicate": "(sv) => sv.weather?.precipMm > 0.5 && sv.place?.nearWater === true && sv.sun?.altitudeDeg > 5",
+    "payload": {
+      "kind": "production",
+      "mana": "blue",
+      "mult": 1.2
+    }
+  }
+]

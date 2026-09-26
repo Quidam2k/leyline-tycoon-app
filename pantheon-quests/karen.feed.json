@@ -1,0 +1,118 @@
+[
+  {
+    "id": "karen-library-refuge",
+    "title": "Library Refuge",
+    "flavor": "A dry roof, free WiFi, and no closing time on the patience — the books are always working. You show up, the library holds its ground.",
+    "tags": ["sanctuary", "light", "civil"],
+    "rarity": "common",
+    "predicate": "(sv) => sv.place?.poiType === 'library' && sv.sun?.darknessFactor < 0.7 && sv.time.hour >= 8 && sv.time.hour < 20",
+    "payload": {
+      "kind": "production",
+      "mana": "green",
+      "mult": 1.15
+    }
+  },
+  {
+    "id": "karen-farmers-market-work",
+    "title": "Farmers Market Work",
+    "flavor": "Saturday morning on 8th — real people, real soil under their nails, real food that took actual work. You're part of the transaction, not just the transaction.",
+    "tags": ["commerce", "local", "light"],
+    "rarity": "common",
+    "predicate": "(sv) => sv.place?.poiType === 'marketplace' && sv.time.dayOfWeek === 6 && sv.time.hour >= 8 && sv.time.hour < 13 && sv.sun?.altitudeDeg > 10",
+    "payload": {
+      "kind": "production",
+      "mana": "yellow",
+      "mult": 1.2
+    }
+  },
+  {
+    "id": "karen-morning-ground",
+    "title": "Morning Ground",
+    "flavor": "The parks open at dawn when the city sleeps and you've already won something—no meetings, no phone, no excuses, just you and the path.",
+    "tags": ["light", "movement", "discipline"],
+    "rarity": "uncommon",
+    "predicate": "(sv) => sv.place?.poiType === 'park' && sv.sun?.goldenHour === true && sv.self?.stepCount > 3000 && sv.weather?.fog !== true",
+    "payload": {
+      "kind": "production",
+      "mana": "orange",
+      "mult": 1.18
+    }
+  },
+  {
+    "id": "karen-gym-ritual",
+    "title": "Gym Ritual",
+    "flavor": "Doors open at 5 AM. No ego, no theater — just people moving their bodies the same way they move their lives. Resistance, then rest. Repeat.",
+    "tags": ["discipline", "health", "sanctuary"],
+    "rarity": "uncommon",
+    "predicate": "(sv) => sv.place?.poiType === 'gym' && ((sv.time.hour >= 5 && sv.time.hour < 9) || (sv.time.hour >= 16 && sv.time.hour < 19)) && sv.sun?.darknessFactor < 0.8",
+    "payload": {
+      "kind": "production",
+      "mana": "red",
+      "mult": 1.2
+    }
+  },
+  {
+    "id": "karen-riverside-clarity",
+    "title": "Riverside Clarity",
+    "flavor": "Blue hour at the water's edge — the light's honest now, no heat, no glare. Just the current doing its work. You stand there and remember the river was here first.",
+    "tags": ["water", "light", "weather", "nature"],
+    "rarity": "rare",
+    "predicate": "(sv) => sv.place?.nearWater === true && sv.sun?.blueHour === true && sv.weather?.precipMm < 2 && sv.weather?.fog !== true && sv.time.hour >= 17 && sv.time.hour < 21",
+    "payload": {
+      "kind": "production",
+      "mana": "blue",
+      "mult": 1.25
+    }
+  },
+  {
+    "id": "karen-storm-wake",
+    "title": "Storm's Wake",
+    "flavor": "The rain stopped; the air is clean and the earth breathing—sit where the water pooled and listen.",
+    "tags": ["weather", "nature", "mindfulness", "calm"],
+    "rarity": "uncommon",
+    "predicate": "sv.weather != null && sv.weather.petrichor === true && sv.weather.cloudCover < 40 && sv.weather.snowing === false && sv.weather.precipMm > 2",
+    "payload": {
+      "kind": "tint",
+      "css": "rgba(120, 180, 200, 0.12)"
+    }
+  },
+  {
+    "id": "karen-check-in-dusk",
+    "title": "Checking In",
+    "flavor": "Tuesday dusk at the park: show up, sit, be counted among the people who make a place feel lived-in.",
+    "tags": ["community", "weekday", "presence", "light"],
+    "rarity": "uncommon",
+    "predicate": "sv.place != null && (sv.place.poiType === 'library' || sv.place.poiType === 'community_center' || sv.place.poiType === 'park') && sv.sun?.twilightPhase === 'civil' && sv.time.dayOfWeek >= 1 && sv.time.dayOfWeek <= 5",
+    "payload": {
+      "kind": "production",
+      "mana": "green",
+      "mult": 1.2
+    }
+  },
+  {
+    "id": "karen-waters-edge-dusk",
+    "title": "Water's Edge at Dusk",
+    "flavor": "The Willamette holds the golden hour like a mirror, and there's a bench somewhere on its bank with your name on it.",
+    "tags": ["light", "nature", "water", "rest"],
+    "rarity": "uncommon",
+    "predicate": "(sv) => sv.sun?.goldenHour === true && sv.place?.nearWater === true",
+    "payload": {
+      "kind": "production",
+      "mana": "blue",
+      "mult": 1.15
+    }
+  },
+  {
+    "id": "karen-riverside-twilight",
+    "title": "Riverside Twilight Walk",
+    "flavor": "Blue hour, riverside path, your body moving—the world slows to walking speed and you remember why that matters.",
+    "tags": ["light", "nature", "water", "walking"],
+    "rarity": "uncommon",
+    "predicate": "(sv) => sv.sun?.blueHour === true && sv.place?.nearWater === true && sv.self?.stepCount > 3000",
+    "payload": {
+      "kind": "production",
+      "mana": "blue",
+      "mult": 1.2
+    }
+  }
+]
